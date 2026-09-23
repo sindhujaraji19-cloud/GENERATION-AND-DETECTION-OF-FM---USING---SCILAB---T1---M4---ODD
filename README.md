@@ -68,7 +68,49 @@ The circuits used to generate a frequency modulation must vary the frequency of 
 
 ---
 
-## PROCEDURE
+## CODE
+
+## Pclc;
+clear;
+close;
+
+// Time
+t = 0:0.00001:0.01;
+
+// Message signal
+Am = 2;
+fm = 1000;
+m = Am*sin(2*%pi*fm*t);
+
+// Carrier signal
+Ac = 1;
+fc = 10000;
+c = Ac*cos(2*%pi*fc*t);
+
+// FM generation
+kf = 5000;
+fm_signal = Ac*cos(2*%pi*fc*t + kf/fm*sin(2*%pi*fm*t));
+
+// Plot Message Signal
+subplot(3,1,1);
+plot(t,m);
+xlabel("Time (s)");
+ylabel("Amplitude");
+title("Message Signal");
+
+// Plot Carrier Signal
+subplot(3,1,2);
+plot(t,c);
+xlabel("Time (s)");
+ylabel("Amplitude");
+title("Carrier Signal");
+
+// Plot FM Signal
+subplot(3,1,3);
+plot(t,fm_signal);
+xlabel("Time (s)");
+ylabel("Amplitude");
+title("FM Modulated Signal");ROCEDURE
 
 * Refer Algorithms and write code for the experiment.
 * Open SCILAB in System.
